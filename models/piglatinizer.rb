@@ -2,7 +2,7 @@ require 'pry'
 
 class PigLatinizer
 
- 
+
 
   def piglatinize(input)
 
@@ -20,15 +20,15 @@ class PigLatinizer
 
  end
 
- 
 
- 
+
+
 
   def pig_word(word)
 
     vowels = ["a","e","i","o","u", "A", "E", "I", "O", "U"]
 
- 
+
 
     if word.length == 1
 
@@ -36,7 +36,7 @@ class PigLatinizer
 
       handle_one_letter(word)
 
- 
+
 
   #  elsif vowels.include? word[0] && word.length == 1
 
@@ -54,9 +54,9 @@ class PigLatinizer
 
   end
 
- 
 
- 
+
+
 
   def handle_one_letter(word)
 
@@ -74,21 +74,21 @@ class PigLatinizer
 
   end
 
- 
 
- 
 
- 
 
- 
+
+
+
+
 
   def helper(word)
 
     vowels = ["a","e","i","o","u", "A", "E", "I", "O", "U"]
 
- 
 
- 
+
+
 
     if !(vowels.include? word[0]) && !(vowels.include? word[1]) && !(vowels.include? word[2]) # word starts with 3 consonants
 
@@ -118,7 +118,7 @@ class PigLatinizer
 
   end
 
- 
+
 
 def pig_sentence(sentence)
 
@@ -126,9 +126,9 @@ def pig_sentence(sentence)
 
     sentence.collect { |word|
 
- 
 
- 
+
+
 
        if word.length == 1
 
@@ -142,10 +142,10 @@ def pig_sentence(sentence)
 
     }.join(" ")
 
- 
+
 
 end
 
- 
+
 
 end

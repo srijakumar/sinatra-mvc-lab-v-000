@@ -1,45 +1,67 @@
-class PigLatinizer
+require 'pry'
 
+class PigLatinizer
   def piglatinize(input)
-      if input.split(" ").length == 1
+    new_input = input.split(" ")
+      if new_input.length == 1
           pig_word(input)
       else
-          pig_sentence(input)
+          pig_sentence(new_input)
       end
  end
 
-  def pig_word(words)
-    words = words.split("")
-    words.each do |word|
-      vowels = %w{a e i o u}
-
-    if vowels.include? words[0]
-        result.push words << 'ay'
+def pig_word(word)
+    vowels = ["a","e","i","o","u", "A", "E", "I", "O", "U"]
+    if word.length == 1
+      #  binding.pry
+      handle_one_letter(word)
+  #  elsif vowels.include? word[0] && word.length == 1
+  #    result.push word << 'way'
+    elsif vowels.include? word[0]
+       return word << 'way'
     else
-        helper(words)
-    end
-
+        helper(word)
     end
   end
 
-  def helper(words)
-    if !(vowels.include? words[0]) && !(vowels.include? words[1]) && !(vowels.include? words[2]) # word starts with 3 consonants
-        words = words.slice(3..-1) + words.slice(0,3)
-        # word starts with 2 consonants
-    elsif !(vowels.include? words[0]) && !(vowels.include? words[1])
+
+def handle_one_letter(word)
+    vowels = ["a","e","i","o","u", "A", "E", "I", "O", "U"]
+      if vowels.include?(word)
+          word << 'way'
+      else
+          word << 'ay'
+      end
+end
+
+def helper(word)
+vowels = ["a","e","i","o","u", "A", "E", "I", "O", "U"]
+
+  if !(vowels.include? word[0]) && !(vowels.include? word[1]) && !(vowels.include? word[2]) # word starts with 3 consonants
+      word = word.slice(3..-1) + word.slice(0,3)
+      # word starts with 2 consonants
+    elsif !(vowels.include? word[0]) && !(vowels.include? word[1])
         #Example: though
-        words = words.slice(2..-1) + words.slice(0,2)
+        word = word.slice(2..-1) + word.slice(0,2)
         #word = ough + th
         #word = oughth
         # word starts with 1 consonant
     else
-        words = words.slice(1..-1) + words.slice(0)
+        word = word.slice(1..-1) + word.slice(0)
     end
-    words << "ay"
-  end
+    word << "ay"
+end
 
 def pig_sentence(sentence)
-    sentence.split.collect { |word| pig_word(word) }.join(" ")
+    #  binding.pry
+    sentence.collect { |word|
+       if word.length == 1
+         handle_one_letter(word)
+       else
+         pig_word(word)
+     end
+
+    }.join(" ")
 end
 
 end
